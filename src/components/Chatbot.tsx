@@ -104,7 +104,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
       handlePropertyDetails(option);
     } else if (option === "Falar com especialista") {
       addBotMessage(
-        "Um de nossos especialistas em financiamento entrará em contato com você!\n\n📞 Telefone: (47) 3443-0000\n📧 Email: contato@inovace.com.br\n⏰ Horário: Segunda a Sexta, 8h às 18h\n\nPosso ajudar com mais alguma coisa?",
+        `Um de nossos especialistas em financiamento entrará em contato com você!\n\n📞 Telefone: ${company.contact.phone}\n📧 Email: ${company.contact.email}\n⏰ ${company.contact.hours.weekdays}\n\nPosso ajudar com mais alguma coisa?`,
         ["Ver empreendimentos", "Voltar ao início"]
       );
     } else if (option === "Voltar ao início" || option === "Ver empreendimentos" || option === "Ver outros empreendimentos") {
