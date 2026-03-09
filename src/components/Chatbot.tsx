@@ -75,14 +75,14 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
     if (option === "Ver empreendimentos disponíveis") {
       setCurrentFlow("properties");
       addBotMessage(
-        "Ótima escolha! Temos 3 empreendimentos incríveis em Itapoá:\n\n🏢 Porto da Ilha - A partir de R$ 550.000\nLocalização privilegiada à beira-mar\n\n🌊 One Beach - A partir de R$ 690.000\nLuxo e sofisticação frente ao oceano\n\n🏛️ Bella Pietra - Lançamento em breve\nElegância em pedra natural\n\nSobre qual você gostaria de saber mais?",
-        ["Porto da Ilha", "One Beach", "Bella Pietra", "Ver todos os detalhes"]
+        "Ótima escolha! Temos empreendimentos incríveis em Itapoá:\n\n🏢 Porto da Ilha\nLocalização privilegiada à beira-mar\n\n🌊 One Beach\nLuxo e sofisticação frente ao oceano\n\n🏛️ Bella Pietra\nElegância em pedra natural\n\nSobre qual você gostaria de saber mais?",
+        ["Porto da Ilha", "One Beach", "Bella Pietra", "Falar com um corretor"]
       );
     } else if (option === "Simular financiamento") {
       setCurrentFlow("financing");
       addBotMessage(
-        "Perfeito! Vamos simular seu financiamento.\n\nQual o valor aproximado do imóvel que você procura?\n\n💰 R$ 500.000 - R$ 700.000\n💰 R$ 700.000 - R$ 1.000.000\n💰 Acima de R$ 1.000.000",
-        ["R$ 500k - R$ 700k", "R$ 700k - R$ 1M", "Acima de R$ 1M"]
+        "Para uma simulação de financiamento personalizada, nosso time comercial pode te atender com as melhores condições.\n\nDeseja falar com um especialista?",
+        ["Falar com especialista", "Ver empreendimentos", "Voltar ao início"]
       );
     } else if (option === "Agendar visita") {
       setCurrentFlow("schedule");
@@ -96,9 +96,12 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
       );
     } else if (["Porto da Ilha", "One Beach", "Bella Pietra"].includes(option)) {
       handlePropertyDetails(option);
-    } else if (option.includes("R$")) {
-      handleFinancingSimulation(option);
-    } else if (option === "Voltar ao início") {
+    } else if (option === "Falar com especialista") {
+      addBotMessage(
+        "Um de nossos especialistas em financiamento entrará em contato com você!\n\n📞 Telefone: (47) 3443-0000\n📧 Email: contato@inovace.com.br\n⏰ Horário: Segunda a Sexta, 8h às 18h\n\nPosso ajudar com mais alguma coisa?",
+        ["Ver empreendimentos", "Voltar ao início"]
+      );
+    } else if (option === "Voltar ao início" || option === "Ver empreendimentos" || option === "Ver outros empreendimentos") {
       setCurrentFlow("initial");
       addBotMessage(
         "Como posso te ajudar?",
@@ -108,23 +111,13 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
   };
 
   const handlePropertyDetails = (property: string) => {
-    const details: Record<string, string> = {
-      "Porto da Ilha": "🏢 Porto da Ilha\n\n✨ Apartamentos de 2 e 3 quartos\n📏 De 85m² a 125m²\n💎 A partir de R$ 550.000\n🏖️ Localização à beira-mar\n🏊 Piscina infinity\n🏋️ Academia completa\n🚗 2 vagas de garagem\n\nGostaria de agendar uma visita?",
-      "One Beach": "🌊 One Beach\n\n✨ Apartamentos de alto padrão\n📏 De 110m² a 180m²\n💎 A partir de R$ 690.000\n🌅 Vista panorâmica do oceano\n🏊 Piscina aquecida\n🎾 Quadra de tênis\n🍽️ Espaço gourmet\n\nGostaria de agendar uma visita?",
-      "Bella Pietra": "🏛️ Bella Pietra\n\n✨ Lançamento exclusivo\n📏 Apartamentos de 95m² a 150m²\n💎 Valores a partir de R$ 620.000\n🪨 Fachada em pedra natural\n🌳 Área verde privativa\n🛁 Spa e sauna\n👶 Espaço kids\n\nGostaria de se cadastrar para o lançamento?"
+    const descriptions: Record<string, string> = {
+      "Porto da Ilha": "🏢 Porto da Ilha\n\nEmpreendimento com localização privilegiada à beira-mar em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
+      "One Beach": "🌊 One Beach\n\nEmpreendimento de alto padrão com vista panorâmica do oceano em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
+      "Bella Pietra": "🏛️ Bella Pietra\n\nEmpreendimento com design exclusivo em pedra natural em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial."
     };
 
-    addBotMessage(details[property], ["Sim, agendar visita", "Ver outros empreendimentos", "Simular financiamento"]);
-  };
-
-  const handleFinancingSimulation = (range: string) => {
-    const simulations: Record<string, string> = {
-      "R$ 500k - R$ 700k": "💰 Simulação para faixa de R$ 500k - R$ 700k\n\n📊 Entrada de 20%: R$ 100k - R$ 140k\n📅 Prazo: até 360 meses\n💳 Parcelas estimadas: R$ 3.500 - R$ 4.900/mês\n🏦 Taxa aproximada: 9,5% a.a.\n\nEssa é uma simulação básica. Gostaria de falar com um especialista para uma proposta personalizada?",
-      "R$ 700k - R$ 1M": "💰 Simulação para faixa de R$ 700k - R$ 1M\n\n📊 Entrada de 20%: R$ 140k - R$ 200k\n📅 Prazo: até 360 meses\n💳 Parcelas estimadas: R$ 4.900 - R$ 7.000/mês\n🏦 Taxa aproximada: 9,5% a.a.\n\nEssa é uma simulação básica. Gostaria de falar com um especialista para uma proposta personalizada?",
-      "Acima de R$ 1M": "💰 Simulação para valores acima de R$ 1M\n\n📊 Entrada de 30%: a partir de R$ 300k\n📅 Prazo: até 360 meses\n💳 Parcelas estimadas: a partir de R$ 7.000/mês\n🏦 Taxa especial para alto padrão\n\nPara esta faixa, temos condições especiais. Gostaria de falar com nosso especialista em alto padrão?"
-    };
-
-    addBotMessage(simulations[range], ["Falar com especialista", "Ver empreendimentos", "Voltar ao início"]);
+    addBotMessage(descriptions[property], ["Falar com um corretor", "Agendar visita", "Ver outros empreendimentos"]);
   };
 
   const handleSendMessage = () => {
