@@ -76,9 +76,13 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
 
     if (option === "Ver empreendimentos disponíveis") {
       setCurrentFlow("properties");
+      const propertyList = properties
+        .map((p) => `🏢 ${p.name}\n${p.location}`)
+        .join("\n\n");
+      const propertyNames = properties.map((p) => p.name);
       addBotMessage(
-        "Ótima escolha! Temos empreendimentos incríveis em Itapoá:\n\n🏢 Porto da Ilha\nLocalização privilegiada à beira-mar\n\n🌊 One Beach\nLuxo e sofisticação frente ao oceano\n\n🏛️ Bella Pietra\nElegância em pedra natural\n\nSobre qual você gostaria de saber mais?",
-        ["Porto da Ilha", "One Beach", "Bella Pietra", "Falar com um corretor"]
+        `Ótima escolha! Temos empreendimentos incríveis:\n\n${propertyList}\n\nSobre qual você gostaria de saber mais?`,
+        [...propertyNames, "Falar com um corretor"]
       );
     } else if (option === "Simular financiamento") {
       setCurrentFlow("financing");
