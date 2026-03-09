@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X, Send, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { company } from "@/data/company";
+import { properties } from "@/data/properties";
 
 interface Message {
   id: number;
