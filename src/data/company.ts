@@ -32,28 +32,27 @@ export interface CompanyInfo {
 
 export const company: CompanyInfo = {
   name: "Inovace Construtora",
-  slogan: "Construindo Sonhos Há 25 Anos",
+  slogan: "Há 13 anos construindo qualidade de vida em Itapoá",
   heroTitle: "Atendimento Inteligente 24h",
   heroSubtitle: "Conheça nossos empreendimentos e agende sua visita agora mesmo",
-  aboutTitle: "Construindo Sonhos Há 25 Anos",
+  aboutTitle: "Há 13 anos construindo qualidade de vida",
   aboutDescription:
-    "A Inovace Construtora é referência em empreendimentos de qualidade em Itapoá-SC. Nossa missão é transformar sonhos em realidade, oferecendo imóveis com excelência em acabamento, localização privilegiada e atendimento diferenciado.",
+    "A Inovace Construtora é referência em empreendimentos de qualidade em Itapoá-SC. Com mais de uma década de atuação, nossa missão é oferecer imóveis com excelência em acabamento, localização privilegiada e atendimento diferenciado.",
   differentials: [
     { title: "Qualidade", description: "Padrão de acabamento premium em todos os nossos empreendimentos" },
     { title: "Localização", description: "Imóveis estrategicamente localizados nas melhores regiões de Itapoá" },
     { title: "Atendimento", description: "Suporte completo desde a escolha até a entrega das chaves" },
   ],
   stats: [
-    { icon: "Building2", value: "15+", label: "Empreendimentos Entregues" },
-    { icon: "Users", value: "2.500+", label: "Famílias Realizadas" },
-    { icon: "Award", value: "25 Anos", label: "De Experiência" },
+    { icon: "Building2", value: "16", label: "Empreendimentos Construídos" },
+    { icon: "Award", value: "13 Anos", label: "De Atuação" },
     { icon: "Clock", value: "24h", label: "Atendimento Online" },
   ],
   contact: {
-    address: "Av. Principal, 1234 - Centro",
-    addressLine2: "Itapoá, SC - CEP 89249-000",
-    phone: "(47) 3443-0000",
-    email: "contato@inovace.com.br",
+    address: "Itapoá - SC",
+    addressLine2: "Itapoá - SC, 89249-000",
+    phone: "(47) 99670-4077 / (47) 3443-7455",
+    email: "contato@inovaceconstrutora.com.br",
     hours: {
       weekdays: "Segunda a Sexta: 8h às 18h",
       saturday: "Sábado: 9h às 13h",
