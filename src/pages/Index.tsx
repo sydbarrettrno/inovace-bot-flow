@@ -6,10 +6,8 @@ import { MessageSquare, Phone, Mail, MapPin, Clock, Building2, Users, Award } fr
 import { toast } from "sonner";
 import logoInovace from "@/assets/logo-inovace.png";
 import heroBuilding from "@/assets/hero-building.jpg";
-import portoIlha from "@/assets/porto-ilha.jpg";
-import oneBeach from "@/assets/one-beach.jpg";
-import bellaPietra from "@/assets/bella-pietra.jpg";
 import { company } from "@/data/company";
+import { properties } from "@/data/properties";
 
 const iconMap = { Building2, Users, Award, Clock } as Record<string, typeof Building2>;
 
