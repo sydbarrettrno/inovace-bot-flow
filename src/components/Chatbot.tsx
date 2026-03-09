@@ -39,7 +39,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
     if (isOpen && messages.length === 0) {
       setTimeout(() => {
         addBotMessage(
-          "Olá! 👋 Sou o assistente inteligente da Inovace Construtora.\n\nPosso te ajudar a conhecer nossos empreendimentos, simular financiamento ou agendar uma visita. O que você gostaria de fazer?",
+          `Olá! 👋 Sou o assistente inteligente da ${company.name}.\n\nPosso te ajudar a conhecer nossos empreendimentos, simular financiamento ou agendar uma visita. O que você gostaria de fazer?`,
           ["Ver empreendimentos disponíveis", "Simular financiamento", "Agendar visita", "Falar com um corretor"]
         );
       }, 500);
