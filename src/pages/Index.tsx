@@ -6,10 +6,8 @@ import { MessageSquare, Phone, Mail, MapPin, Clock, Building2, Users, Award } fr
 import { toast } from "sonner";
 import logoInovace from "@/assets/logo-inovace.png";
 import heroBuilding from "@/assets/hero-building.jpg";
-import portoIlha from "@/assets/porto-ilha.jpg";
-import oneBeach from "@/assets/one-beach.jpg";
-import bellaPietra from "@/assets/bella-pietra.jpg";
 import { company } from "@/data/company";
+import { properties } from "@/data/properties";
 
 const iconMap = { Building2, Users, Award, Clock } as Record<string, typeof Building2>;
 
@@ -117,39 +115,20 @@ const Index = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <PropertyCard
-              name="Porto da Ilha"
-              price="A partir de R$ 550 mil"
-              image={portoIlha}
-              location="Itapoá, SC - Beira-mar"
-              beds="2-3 qts"
-              area="85-125m²"
-              parking="2 vagas"
-              status="Disponível"
-              onLearnMore={() => handleLearnMore("Porto da Ilha")}
-            />
-            <PropertyCard
-              name="One Beach"
-              price="A partir de R$ 690 mil"
-              image={oneBeach}
-              location="Itapoá, SC - Frente ao Mar"
-              beds="3-4 qts"
-              area="110-180m²"
-              parking="2-3 vagas"
-              status="Alto Padrão"
-              onLearnMore={() => handleLearnMore("One Beach")}
-            />
-            <PropertyCard
-              name="Bella Pietra"
-              price="Lançamento em breve"
-              image={bellaPietra}
-              location="Itapoá, SC - Vista Mar"
-              beds="2-3 qts"
-              area="95-150m²"
-              parking="2 vagas"
-              status="Lançamento"
-              onLearnMore={() => handleLearnMore("Bella Pietra")}
-            />
+            {properties.map((property) => (
+              <PropertyCard
+                key={property.name}
+                name={property.name}
+                price={property.price}
+                image={property.image}
+                location={property.location}
+                beds={property.beds}
+                area={property.area}
+                parking={property.parking}
+                status={property.status}
+                onLearnMore={() => handleLearnMore(property.name)}
+              />
+            ))}
           </div>
         </div>
       </section>
