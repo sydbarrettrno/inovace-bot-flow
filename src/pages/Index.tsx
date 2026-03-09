@@ -9,6 +9,9 @@ import heroBuilding from "@/assets/hero-building.jpg";
 import portoIlha from "@/assets/porto-ilha.jpg";
 import oneBeach from "@/assets/one-beach.jpg";
 import bellaPietra from "@/assets/bella-pietra.jpg";
+import { company } from "@/data/company";
+
+const iconMap = { Building2, Users, Award, Clock } as Record<string, typeof Building2>;
 
 const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -29,7 +32,7 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-40">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <img src={logoInovace} alt="Inovace Construtora" className="h-12" />
+          <img src={logoInovace} alt={company.name} className="h-12" />
           <nav className="hidden md:flex items-center gap-8">
             <a href="#empreendimentos" className="text-foreground hover:text-primary transition-colors">
               Empreendimentos
@@ -61,10 +64,10 @@ const Index = () => {
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 fade-in">
-            Atendimento Inteligente 24h
+            {company.heroTitle}
           </h1>
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto slide-up">
-            Conheça nossos empreendimentos e agende sua visita agora mesmo
+            {company.heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center scale-in">
             <Button
@@ -90,18 +93,16 @@ const Index = () => {
       <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { icon: Building2, value: "15+", label: "Empreendimentos Entregues" },
-              { icon: Users, value: "2.500+", label: "Famílias Realizadas" },
-              { icon: Award, value: "25 Anos", label: "De Experiência" },
-              { icon: Clock, value: "24h", label: "Atendimento Online" },
-            ].map((stat, idx) => (
-              <div key={idx} className="text-center fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
-                <stat.icon className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+            {company.stats.map((stat, idx) => {
+              const Icon = iconMap[stat.icon];
+              return (
+                <div key={idx} className="text-center fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
+                  <Icon className="w-12 h-12 mx-auto mb-4 text-primary" />
+                  <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -158,32 +159,18 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Construindo Sonhos Há 25 Anos
+              {company.aboutTitle}
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              A Inovace Construtora é referência em empreendimentos de qualidade em Itapoá-SC. Nossa missão é
-              transformar sonhos em realidade, oferecendo imóveis com excelência em acabamento, localização
-              privilegiada e atendimento diferenciado.
+              {company.aboutDescription}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="p-6 bg-card rounded-lg border border-border">
-                <h3 className="text-xl font-semibold mb-3 text-foreground">Qualidade</h3>
-                <p className="text-muted-foreground">
-                  Padrão de acabamento premium em todos os nossos empreendimentos
-                </p>
-              </div>
-              <div className="p-6 bg-card rounded-lg border border-border">
-                <h3 className="text-xl font-semibold mb-3 text-foreground">Localização</h3>
-                <p className="text-muted-foreground">
-                  Imóveis estrategicamente localizados nas melhores regiões de Itapoá
-                </p>
-              </div>
-              <div className="p-6 bg-card rounded-lg border border-border">
-                <h3 className="text-xl font-semibold mb-3 text-foreground">Atendimento</h3>
-                <p className="text-muted-foreground">
-                  Suporte completo desde a escolha até a entrega das chaves
-                </p>
-              </div>
+              {company.differentials.map((diff) => (
+                <div key={diff.title} className="p-6 bg-card rounded-lg border border-border">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">{diff.title}</h3>
+                  <p className="text-muted-foreground">{diff.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -201,9 +188,9 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Endereço</h3>
                     <p className="text-primary-foreground/80">
-                      Av. Principal, 1234 - Centro
+                      {company.contact.address}
                       <br />
-                      Itapoá, SC - CEP 89249-000
+                      {company.contact.addressLine2}
                     </p>
                   </div>
                 </div>
@@ -211,14 +198,14 @@ const Index = () => {
                   <Phone className="w-6 h-6 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Telefone</h3>
-                    <p className="text-primary-foreground/80">(47) 3443-0000</p>
+                    <p className="text-primary-foreground/80">{company.contact.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Mail className="w-6 h-6 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-primary-foreground/80">contato@inovace.com.br</p>
+                    <p className="text-primary-foreground/80">{company.contact.email}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -226,11 +213,11 @@ const Index = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Horário</h3>
                     <p className="text-primary-foreground/80">
-                      Segunda a Sexta: 8h às 18h
+                      {company.contact.hours.weekdays}
                       <br />
-                      Sábado: 9h às 13h
+                      {company.contact.hours.saturday}
                       <br />
-                      <span className="text-accent font-semibold">Chat Online: 24 horas</span>
+                      <span className="text-accent font-semibold">{company.contact.hours.online}</span>
                     </p>
                   </div>
                 </div>
@@ -259,20 +246,16 @@ const Index = () => {
       <footer className="py-8 bg-primary-dark text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <img src={logoInovace} alt="Inovace Construtora" className="h-10" />
+            <img src={logoInovace} alt={company.name} className="h-10" />
             <p className="text-sm text-primary-foreground/70">
-              © 2025 Inovace Construtora. Todos os direitos reservados.
+              {company.copyright}
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                LinkedIn
-              </a>
+              {company.socialLinks.map((link) => (
+                <a key={link.label} href={link.href} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
