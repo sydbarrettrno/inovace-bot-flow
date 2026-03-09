@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X, Send, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { company } from "@/data/company";
+import { properties } from "@/data/properties";
 
 interface Message {
   id: number;
@@ -37,7 +39,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
     if (isOpen && messages.length === 0) {
       setTimeout(() => {
         addBotMessage(
-          "Olá! 👋 Sou o assistente inteligente da Inovace Construtora.\n\nPosso te ajudar a conhecer nossos empreendimentos, simular financiamento ou agendar uma visita. O que você gostaria de fazer?",
+          `Olá! 👋 Sou o assistente inteligente da ${company.name}.\n\nPosso te ajudar a conhecer nossos empreendimentos, simular financiamento ou agendar uma visita. O que você gostaria de fazer?`,
           ["Ver empreendimentos disponíveis", "Simular financiamento", "Agendar visita", "Falar com um corretor"]
         );
       }, 500);
@@ -74,9 +76,13 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
 
     if (option === "Ver empreendimentos disponíveis") {
       setCurrentFlow("properties");
+      const propertyList = properties
+        .map((p) => `🏢 ${p.name}\n${p.location}`)
+        .join("\n\n");
+      const propertyNames = properties.map((p) => p.name);
       addBotMessage(
-        "Ótima escolha! Temos empreendimentos incríveis em Itapoá:\n\n🏢 Porto da Ilha\nLocalização privilegiada à beira-mar\n\n🌊 One Beach\nLuxo e sofisticação frente ao oceano\n\n🏛️ Bella Pietra\nElegância em pedra natural\n\nSobre qual você gostaria de saber mais?",
-        ["Porto da Ilha", "One Beach", "Bella Pietra", "Falar com um corretor"]
+        `Ótima escolha! Temos empreendimentos incríveis:\n\n${propertyList}\n\nSobre qual você gostaria de saber mais?`,
+        [...propertyNames, "Falar com um corretor"]
       );
     } else if (option === "Simular financiamento") {
       setCurrentFlow("financing");
@@ -91,14 +97,14 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
       );
     } else if (option === "Falar com um corretor") {
       addBotMessage(
-        "Um de nossos corretores especializados entrará em contato com você em breve!\n\n📞 Telefone: (47) 3443-0000\n📧 Email: contato@inovace.com.br\n⏰ Horário: Segunda a Sexta, 8h às 18h\n\nPosso ajudar com mais alguma coisa?",
+        `Um de nossos corretores especializados entrará em contato com você em breve!\n\n📞 Telefone: ${company.contact.phone}\n📧 Email: ${company.contact.email}\n⏰ ${company.contact.hours.weekdays}\n\nPosso ajudar com mais alguma coisa?`,
         ["Ver empreendimentos", "Voltar ao início"]
       );
-    } else if (["Porto da Ilha", "One Beach", "Bella Pietra"].includes(option)) {
+    } else if (properties.some((p) => p.name === option)) {
       handlePropertyDetails(option);
     } else if (option === "Falar com especialista") {
       addBotMessage(
-        "Um de nossos especialistas em financiamento entrará em contato com você!\n\n📞 Telefone: (47) 3443-0000\n📧 Email: contato@inovace.com.br\n⏰ Horário: Segunda a Sexta, 8h às 18h\n\nPosso ajudar com mais alguma coisa?",
+        `Um de nossos especialistas em financiamento entrará em contato com você!\n\n📞 Telefone: ${company.contact.phone}\n📧 Email: ${company.contact.email}\n⏰ ${company.contact.hours.weekdays}\n\nPosso ajudar com mais alguma coisa?`,
         ["Ver empreendimentos", "Voltar ao início"]
       );
     } else if (option === "Voltar ao início" || option === "Ver empreendimentos" || option === "Ver outros empreendimentos") {
@@ -110,14 +116,14 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
     }
   };
 
-  const handlePropertyDetails = (property: string) => {
-    const descriptions: Record<string, string> = {
-      "Porto da Ilha": "🏢 Porto da Ilha\n\nEmpreendimento com localização privilegiada à beira-mar em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
-      "One Beach": "🌊 One Beach\n\nEmpreendimento de alto padrão com vista panorâmica do oceano em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
-      "Bella Pietra": "🏛️ Bella Pietra\n\nEmpreendimento com design exclusivo em pedra natural em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial."
-    };
+  const handlePropertyDetails = (propertyName: string) => {
+    const property = properties.find((p) => p.name === propertyName);
+    if (!property) return;
 
-    addBotMessage(descriptions[property], ["Falar com um corretor", "Agendar visita", "Ver outros empreendimentos"]);
+    addBotMessage(
+      `🏢 ${property.name}\n\n📍 ${property.location}\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.`,
+      ["Falar com um corretor", "Agendar visita", "Ver outros empreendimentos"]
+    );
   };
 
   const handleSendMessage = () => {
@@ -160,7 +166,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
               <Bot className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h3 className="font-semibold text-primary-foreground">Assistente Inovace</h3>
+              <h3 className="font-semibold text-primary-foreground">Assistente {company.name}</h3>
               <p className="text-xs text-primary-foreground/80">Online 24h</p>
             </div>
           </div>
