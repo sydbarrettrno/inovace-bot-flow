@@ -108,23 +108,13 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
   };
 
   const handlePropertyDetails = (property: string) => {
-    const details: Record<string, string> = {
-      "Porto da Ilha": "🏢 Porto da Ilha\n\n✨ Apartamentos de 2 e 3 quartos\n📏 De 85m² a 125m²\n💎 A partir de R$ 550.000\n🏖️ Localização à beira-mar\n🏊 Piscina infinity\n🏋️ Academia completa\n🚗 2 vagas de garagem\n\nGostaria de agendar uma visita?",
-      "One Beach": "🌊 One Beach\n\n✨ Apartamentos de alto padrão\n📏 De 110m² a 180m²\n💎 A partir de R$ 690.000\n🌅 Vista panorâmica do oceano\n🏊 Piscina aquecida\n🎾 Quadra de tênis\n🍽️ Espaço gourmet\n\nGostaria de agendar uma visita?",
-      "Bella Pietra": "🏛️ Bella Pietra\n\n✨ Lançamento exclusivo\n📏 Apartamentos de 95m² a 150m²\n💎 Valores a partir de R$ 620.000\n🪨 Fachada em pedra natural\n🌳 Área verde privativa\n🛁 Spa e sauna\n👶 Espaço kids\n\nGostaria de se cadastrar para o lançamento?"
+    const descriptions: Record<string, string> = {
+      "Porto da Ilha": "🏢 Porto da Ilha\n\nEmpreendimento com localização privilegiada à beira-mar em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
+      "One Beach": "🌊 One Beach\n\nEmpreendimento de alto padrão com vista panorâmica do oceano em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
+      "Bella Pietra": "🏛️ Bella Pietra\n\nEmpreendimento com design exclusivo em pedra natural em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial."
     };
 
-    addBotMessage(details[property], ["Sim, agendar visita", "Ver outros empreendimentos", "Simular financiamento"]);
-  };
-
-  const handleFinancingSimulation = (range: string) => {
-    const simulations: Record<string, string> = {
-      "R$ 500k - R$ 700k": "💰 Simulação para faixa de R$ 500k - R$ 700k\n\n📊 Entrada de 20%: R$ 100k - R$ 140k\n📅 Prazo: até 360 meses\n💳 Parcelas estimadas: R$ 3.500 - R$ 4.900/mês\n🏦 Taxa aproximada: 9,5% a.a.\n\nEssa é uma simulação básica. Gostaria de falar com um especialista para uma proposta personalizada?",
-      "R$ 700k - R$ 1M": "💰 Simulação para faixa de R$ 700k - R$ 1M\n\n📊 Entrada de 20%: R$ 140k - R$ 200k\n📅 Prazo: até 360 meses\n💳 Parcelas estimadas: R$ 4.900 - R$ 7.000/mês\n🏦 Taxa aproximada: 9,5% a.a.\n\nEssa é uma simulação básica. Gostaria de falar com um especialista para uma proposta personalizada?",
-      "Acima de R$ 1M": "💰 Simulação para valores acima de R$ 1M\n\n📊 Entrada de 30%: a partir de R$ 300k\n📅 Prazo: até 360 meses\n💳 Parcelas estimadas: a partir de R$ 7.000/mês\n🏦 Taxa especial para alto padrão\n\nPara esta faixa, temos condições especiais. Gostaria de falar com nosso especialista em alto padrão?"
-    };
-
-    addBotMessage(simulations[range], ["Falar com especialista", "Ver empreendimentos", "Voltar ao início"]);
+    addBotMessage(descriptions[property], ["Falar com um corretor", "Agendar visita", "Ver outros empreendimentos"]);
   };
 
   const handleSendMessage = () => {
