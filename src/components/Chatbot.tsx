@@ -166,7 +166,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
               <Bot className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h3 className="font-semibold text-primary-foreground">Assistente Inovace</h3>
+              <h3 className="font-semibold text-primary-foreground">Assistente {company.name}</h3>
               <p className="text-xs text-primary-foreground/80">Online 24h</p>
             </div>
           </div>
