@@ -97,7 +97,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
       );
     } else if (option === "Falar com um corretor") {
       addBotMessage(
-        "Um de nossos corretores especializados entrará em contato com você em breve!\n\n📞 Telefone: (47) 3443-0000\n📧 Email: contato@inovace.com.br\n⏰ Horário: Segunda a Sexta, 8h às 18h\n\nPosso ajudar com mais alguma coisa?",
+        `Um de nossos corretores especializados entrará em contato com você em breve!\n\n📞 Telefone: ${company.contact.phone}\n📧 Email: ${company.contact.email}\n⏰ ${company.contact.hours.weekdays}\n\nPosso ajudar com mais alguma coisa?`,
         ["Ver empreendimentos", "Voltar ao início"]
       );
     } else if (["Porto da Ilha", "One Beach", "Bella Pietra"].includes(option)) {
