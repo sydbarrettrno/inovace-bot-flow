@@ -49,8 +49,8 @@ export const company: CompanyInfo = {
     { icon: "Clock", value: "24h", label: "Atendimento Online" },
   ],
   contact: {
-    address: "Itapoá - SC",
-    addressLine2: "Itapoá - SC, 89249-000",
+    address: "Itapoá - SC, 89249-000",
+    addressLine2: "",
     phone: "(47) 99670-4077 / (47) 3443-7455",
     email: "contato@inovaceconstrutora.com.br",
     hours: {
