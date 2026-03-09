@@ -75,14 +75,14 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
     if (option === "Ver empreendimentos disponíveis") {
       setCurrentFlow("properties");
       addBotMessage(
-        "Ótima escolha! Temos 3 empreendimentos incríveis em Itapoá:\n\n🏢 Porto da Ilha - A partir de R$ 550.000\nLocalização privilegiada à beira-mar\n\n🌊 One Beach - A partir de R$ 690.000\nLuxo e sofisticação frente ao oceano\n\n🏛️ Bella Pietra - Lançamento em breve\nElegância em pedra natural\n\nSobre qual você gostaria de saber mais?",
-        ["Porto da Ilha", "One Beach", "Bella Pietra", "Ver todos os detalhes"]
+        "Ótima escolha! Temos empreendimentos incríveis em Itapoá:\n\n🏢 Porto da Ilha\nLocalização privilegiada à beira-mar\n\n🌊 One Beach\nLuxo e sofisticação frente ao oceano\n\n🏛️ Bella Pietra\nElegância em pedra natural\n\nSobre qual você gostaria de saber mais?",
+        ["Porto da Ilha", "One Beach", "Bella Pietra", "Falar com um corretor"]
       );
     } else if (option === "Simular financiamento") {
       setCurrentFlow("financing");
       addBotMessage(
-        "Perfeito! Vamos simular seu financiamento.\n\nQual o valor aproximado do imóvel que você procura?\n\n💰 R$ 500.000 - R$ 700.000\n💰 R$ 700.000 - R$ 1.000.000\n💰 Acima de R$ 1.000.000",
-        ["R$ 500k - R$ 700k", "R$ 700k - R$ 1M", "Acima de R$ 1M"]
+        "Para uma simulação de financiamento personalizada, nosso time comercial pode te atender com as melhores condições.\n\nDeseja falar com um especialista?",
+        ["Falar com especialista", "Ver empreendimentos", "Voltar ao início"]
       );
     } else if (option === "Agendar visita") {
       setCurrentFlow("schedule");
