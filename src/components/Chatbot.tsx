@@ -116,14 +116,14 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
     }
   };
 
-  const handlePropertyDetails = (property: string) => {
-    const descriptions: Record<string, string> = {
-      "Porto da Ilha": "🏢 Porto da Ilha\n\nEmpreendimento com localização privilegiada à beira-mar em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
-      "One Beach": "🌊 One Beach\n\nEmpreendimento de alto padrão com vista panorâmica do oceano em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.",
-      "Bella Pietra": "🏛️ Bella Pietra\n\nEmpreendimento com design exclusivo em pedra natural em Itapoá.\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial."
-    };
+  const handlePropertyDetails = (propertyName: string) => {
+    const property = properties.find((p) => p.name === propertyName);
+    if (!property) return;
 
-    addBotMessage(descriptions[property], ["Falar com um corretor", "Agendar visita", "Ver outros empreendimentos"]);
+    addBotMessage(
+      `🏢 ${property.name}\n\n📍 ${property.location}\n\nPara informações sobre plantas, valores e disponibilidade, fale com nosso time comercial.`,
+      ["Falar com um corretor", "Agendar visita", "Ver outros empreendimentos"]
+    );
   };
 
   const handleSendMessage = () => {
