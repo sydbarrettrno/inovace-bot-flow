@@ -100,7 +100,7 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
         `Um de nossos corretores especializados entrará em contato com você em breve!\n\n📞 Telefone: ${company.contact.phone}\n📧 Email: ${company.contact.email}\n⏰ ${company.contact.hours.weekdays}\n\nPosso ajudar com mais alguma coisa?`,
         ["Ver empreendimentos", "Voltar ao início"]
       );
-    } else if (["Porto da Ilha", "One Beach", "Bella Pietra"].includes(option)) {
+    } else if (properties.some((p) => p.name === option)) {
       handlePropertyDetails(option);
     } else if (option === "Falar com especialista") {
       addBotMessage(
