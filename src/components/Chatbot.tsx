@@ -96,9 +96,12 @@ export const Chatbot = ({ isOpen, onClose, onScheduleVisit }: ChatbotProps) => {
       );
     } else if (["Porto da Ilha", "One Beach", "Bella Pietra"].includes(option)) {
       handlePropertyDetails(option);
-    } else if (option.includes("R$")) {
-      handleFinancingSimulation(option);
-    } else if (option === "Voltar ao início") {
+    } else if (option === "Falar com especialista") {
+      addBotMessage(
+        "Um de nossos especialistas em financiamento entrará em contato com você!\n\n📞 Telefone: (47) 3443-0000\n📧 Email: contato@inovace.com.br\n⏰ Horário: Segunda a Sexta, 8h às 18h\n\nPosso ajudar com mais alguma coisa?",
+        ["Ver empreendimentos", "Voltar ao início"]
+      );
+    } else if (option === "Voltar ao início" || option === "Ver empreendimentos" || option === "Ver outros empreendimentos") {
       setCurrentFlow("initial");
       addBotMessage(
         "Como posso te ajudar?",
